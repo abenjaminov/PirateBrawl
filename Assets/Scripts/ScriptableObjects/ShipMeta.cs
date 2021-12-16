@@ -8,7 +8,7 @@ namespace ScriptableObjects
         public string Name;
         public float Scale;
         public float Speed;
-        public float SlowRate;
+        public float SpeedChangeRate;
         public Sprite ImageFullHealth;
     }
 }

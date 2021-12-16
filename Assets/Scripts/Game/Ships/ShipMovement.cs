@@ -9,6 +9,7 @@ namespace Game.Ships
         [SerializeField] private ShipMeta ShipMeta;
         
         private Vector3 _target;
+        private float currentSpeed = 0;
 
         public void SetTarget(Vector3 target)
         {
@@ -20,8 +21,7 @@ namespace Game.Ships
 
         IEnumerator MoveToTarget()
         {
-            var speed = ShipMeta.Speed;
-            
+            // Gain speed while rotating to the target
             while (Vector3.Distance(transform.position, _target) > .3f)
             {
                 var directionToTarget = (_target - transform.position).normalized;
@@ -30,18 +30,19 @@ namespace Game.Ships
                 var current = transform.rotation;
                 
                 transform.rotation = Quaternion.Slerp(current, rotation, Time.deltaTime);
-                
-                 transform.position += transform.right * Time.deltaTime * speed;
+
+                currentSpeed = Mathf.Min(ShipMeta.Speed, currentSpeed + (ShipMeta.Speed / ShipMeta.SpeedChangeRate) * Time.deltaTime);
+                transform.position += transform.right * Time.deltaTime * currentSpeed;
                 
                 yield return new WaitForEndOfFrame();
             }
 
-            var maxSpeed = speed;
+            var maxSpeed = currentSpeed;
 
-            while (speed > 0)
+            while (currentSpeed > 0)
             {
-                speed -= (maxSpeed / ShipMeta.SlowRate) * Time.deltaTime;
-                transform.position += transform.right * Time.deltaTime * speed;
+                currentSpeed = Mathf.Max(0,currentSpeed - ((maxSpeed / ShipMeta.SpeedChangeRate) * Time.deltaTime));
+                transform.position += transform.right * Time.deltaTime * currentSpeed;
                 yield return new WaitForEndOfFrame();
             }
             

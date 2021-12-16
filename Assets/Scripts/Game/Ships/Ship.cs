@@ -30,6 +30,7 @@ namespace Game.Ships
         private void Start()
         {
             _spriteRenderer.sprite = ShipMeta.ImageFullHealth;
+            transform.localScale = new Vector3(ShipMeta.Scale, ShipMeta.Scale, 0);
             
             ShipsChannel.OnShipAdded(this);
         }
