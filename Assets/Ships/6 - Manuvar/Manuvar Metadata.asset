@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 64103ef4f99f1ef4fadbc7b3b731d101, type: 3}
-  m_Name: Schooner Metadata
+  m_Name: Manuvar Metadata
   m_EditorClassIdentifier: 
-  Name: Schooner
-  Scale: 1.5
-  Speed: 1
+  Name: Manuvar
+  Scale: 2
+  Speed: 2
   SpeedChangeRate: 2
-  ImageFullHealth: {fileID: 21300000, guid: 8e2e0f692ef6696449d4c5fa99419de8, type: 3}
+  ImageFullHealth: {fileID: 21300000, guid: 54818de91c9146e4a83f3d9fd635097b, type: 3}
