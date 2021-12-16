@@ -1,21 +1,23 @@
-﻿using ScriptableObjects.Channels;
+﻿using GameInput.Interfaces;
+using GameInput.Models;
+using ScriptableObjects.Channels;
 using ScriptableObjects.Models;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 namespace Game
 {
-    public class Arena : MonoBehaviour, IPointerClickHandler
+    public class Arena : MonoBehaviour, IClickHandler
     {
         [SerializeField] private GameChannel GameChannel;
         
-        public void OnPointerClick(PointerEventData eventData)
+        public void HandleClick(ClickEventInfo eventInfo)
         {
             // TODO : Check the type of terrain that was clicked
+            Debug.Log("Arena Clicked");
 
             GameChannel.OnArenaClicked(new ArenaClickedEventInfo()
             {
-                WorldPosition = eventData.pointerCurrentRaycast.worldPosition
+                WorldPosition = eventInfo.WorldPosition
             });
         }
     }

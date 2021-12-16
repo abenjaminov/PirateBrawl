@@ -1,13 +1,14 @@
 ﻿using System;
+using GameInput.Interfaces;
+using GameInput.Models;
 using ScriptableObjects;
 using ScriptableObjects.Channels;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.EventSystems;
 
 namespace Game.Ships
 {
-    public class Ship : MonoBehaviour, IPointerClickHandler
+    public class Ship : MonoBehaviour, IClickHandler
     {
         public UnityAction<Ship> ShipClickedEvent;
         
@@ -34,9 +35,11 @@ namespace Game.Ships
             
             ShipsChannel.OnShipAdded(this);
         }
-
-        public void OnPointerClick(PointerEventData eventData)
+        
+        public void HandleClick(ClickEventInfo eventInfo)
         {
+            Debug.Log(ShipMeta.Name + " Clicked");
+            
             ShipClickedEvent?.Invoke(this);
         }
     }

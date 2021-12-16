@@ -7,7 +7,8 @@ namespace Game.Ships
     public class ShipMovement : MonoBehaviour
     {
         [SerializeField] private ShipMeta ShipMeta;
-        
+
+        private const float MaxAngleForMovement = 20;
         private Vector3 _target;
         private float currentSpeed = 0;
 
@@ -21,23 +22,40 @@ namespace Game.Ships
 
         IEnumerator MoveToTarget()
         {
+            var maxSpeed = currentSpeed;
+
             // Gain speed while rotating to the target
-            while (Vector3.Distance(transform.position, _target) > .3f)
+            while (Vector2.Distance(transform.position, _target) > .3f)
             {
                 var directionToTarget = (_target - transform.position).normalized;
                 var angle = Mathf.Atan2(directionToTarget.y, directionToTarget.x) * Mathf.Rad2Deg;
-                var rotation = Quaternion.AngleAxis(angle, Vector3.forward); 
-                var current = transform.rotation;
-                
-                transform.rotation = Quaternion.Slerp(current, rotation, Time.deltaTime);
 
-                currentSpeed = Mathf.Min(ShipMeta.Speed, currentSpeed + (ShipMeta.Speed / ShipMeta.SpeedChangeRate) * Time.deltaTime);
-                transform.position += transform.right * Time.deltaTime * currentSpeed;
+                var rotation = Quaternion.AngleAxis(angle, Vector3.forward); 
+                var currentRotation = transform.rotation;
+
+                var angleToDestinationRotation = Quaternion.Angle(rotation, transform.rotation);
                 
-                yield return new WaitForEndOfFrame();
+                if (angleToDestinationRotation > MaxAngleForMovement)
+                {
+                    transform.rotation = Quaternion.Slerp(currentRotation, rotation, Time.deltaTime);
+                    
+                    currentSpeed = Mathf.Max(0,currentSpeed - ((maxSpeed / ShipMeta.SpeedChangeRate) * Time.deltaTime));
+                    transform.position += transform.right * Time.deltaTime * currentSpeed;
+                    
+                    yield return new WaitForEndOfFrame();
+                }
+                else
+                {
+                    transform.rotation = Quaternion.Lerp(currentRotation, rotation, Time.deltaTime);
+
+                    currentSpeed = Mathf.Min(ShipMeta.Speed, currentSpeed + (ShipMeta.Speed / ShipMeta.SpeedChangeRate) * Time.deltaTime);
+                    transform.position += transform.right * Time.deltaTime * currentSpeed;
+                
+                    yield return new WaitForEndOfFrame();
+                }
             }
 
-            var maxSpeed = currentSpeed;
+            maxSpeed = currentSpeed;
 
             while (currentSpeed > 0)
             {
