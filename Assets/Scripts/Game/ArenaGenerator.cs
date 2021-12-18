@@ -1,22 +1,25 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Random = Unity.Mathematics.Random;
 
 namespace Game
 {
     public enum TileType
     {
         Water,
-        Sand
+        Land
     }
     
     public class ArenaGenerator : MonoBehaviour
     {
         //public Sprite
         [SerializeField] private Arena Arena;
-        [SerializeField] private Tilemap TileMap;
-        public TileBase SandTile;
+        [SerializeField] private Tilemap LandTileMap;
+        [SerializeField] private Tilemap WaterTileMap;
+        public TileBase LandTile;
         public TileBase WaterTile;
 
         public TileType[,] Grid;
@@ -26,6 +29,7 @@ namespace Game
         public int SmoothAmount;
         
         private Vector2 ArenaSize;
+        private System.Random GeneratorRandom;
         
         private void Awake()
         {
@@ -40,12 +44,14 @@ namespace Game
             {
                 SmoothStep();
             }
+
+            InitializeWater();
             UpdateArena();
         }
 
         private void RandomFillMap()
         {
-            var random = new System.Random(DateTime.Now.Millisecond);
+            GeneratorRandom = new System.Random(DateTime.Now.Millisecond);
 
             for (int x = 0; x < ArenaSize.x; x++)
             {
@@ -53,11 +59,11 @@ namespace Game
                 {
                     if (x == 0 || x == (int)ArenaSize.x - 1 || y == 0 || y == (int)ArenaSize.y - 1)
                     {
-                        Grid[x, y] = TileType.Sand;
+                        Grid[x, y] = TileType.Water;
                     }
                     else
                     {
-                        Grid[x, y] = random.Next(0, 100) < RandomFillPercent ? TileType.Sand : TileType.Water;
+                        Grid[x, y] = GeneratorRandom.Next(0, 100) < RandomFillPercent ? TileType.Land : TileType.Water;
                     }
                 }
             }
@@ -74,11 +80,11 @@ namespace Game
 
                     if (sandCount > 4)
                     {
-                        Grid[x, y] = TileType.Sand;
+                        Grid[x, y] = TileType.Water;
                     }
                     else if (sandCount < 4)
                     {
-                        Grid[x, y] = TileType.Water;
+                        Grid[x, y] = TileType.Land;
                     }
                 }
             }
@@ -96,7 +102,7 @@ namespace Game
                     {
                         if (neighborX != x || neightborY != y)
                         {
-                            count += Grid[neighborX, neightborY] == TileType.Sand ? 1 : 0;
+                            count += Grid[neighborX, neightborY] == TileType.Water ? 1 : 0;
                         }    
                     }
                     else
@@ -109,6 +115,17 @@ namespace Game
             return count;
         }
 
+        private void InitializeWater()
+        {
+            for (int x = 0; x < ArenaSize.x; x++)
+            {
+                for (int y = 0; y < ArenaSize.y; y++)
+                {
+                    WaterTileMap.SetTile(new Vector3Int(x, y, 0), WaterTile);    
+                }
+            }
+        }
+        
         [ContextMenu("UpdateArena")]
         private void UpdateArena()
         {
@@ -116,7 +133,11 @@ namespace Game
             {
                 for (int y = 0; y < ArenaSize.y; y++)
                 {
-                    TileMap.SetTile(new Vector3Int(x, y, 0), Grid[x, y] == TileType.Sand ? SandTile : WaterTile);
+                    if (Grid[x, y] == TileType.Land)
+                    {
+                        LandTileMap.SetTile(new Vector3Int(x, y, 0), LandTile);    
+                    }
+                    
                 }
             }
         }

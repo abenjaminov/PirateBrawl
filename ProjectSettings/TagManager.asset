@@ -41,3 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: ArenaLayer
+    uniqueID: 3917182531
+    locked: 0
+  - name: Ships
+    uniqueID: 1786065213
+    locked: 0
