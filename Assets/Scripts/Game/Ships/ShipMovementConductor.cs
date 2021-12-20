@@ -38,6 +38,10 @@ namespace Game.Ships
         {
             ship.ShipClickedEvent += ShipClickedEvent;
             _ships.Add(ship.Id, ship);
+            
+            var shipMovement = ship.GetComponent<ShipMovement>();
+            var shipTransform = ship.transform;
+            shipMovement.SetTarget(shipTransform.position + (shipTransform.right * 2));
         }
 
         private void ShipClickedEvent(Ship ship)

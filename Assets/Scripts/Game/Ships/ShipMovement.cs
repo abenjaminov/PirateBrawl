@@ -6,7 +6,7 @@ namespace Game.Ships
 {
     public class ShipMovement : MonoBehaviour
     {
-        [SerializeField] private ShipMeta ShipMeta;
+        [SerializeField] private ShipStats ShipStats;
 
         private const float MaxAngleForMovement = 20;
         private Vector3 _target;
@@ -39,7 +39,7 @@ namespace Game.Ships
                 {
                     transform.rotation = Quaternion.Slerp(currentRotation, rotation, Time.deltaTime);
                     
-                    currentSpeed = Mathf.Max(0,currentSpeed - ((maxSpeed / ShipMeta.SpeedChangeRate) * Time.deltaTime));
+                    currentSpeed = Mathf.Max(0,currentSpeed - ((maxSpeed / ShipStats.GetSpeedChangeRate()) * Time.deltaTime));
                     transform.position += transform.right * Time.deltaTime * currentSpeed;
                     
                     yield return new WaitForEndOfFrame();
@@ -48,7 +48,8 @@ namespace Game.Ships
                 {
                     transform.rotation = Quaternion.Lerp(currentRotation, rotation, Time.deltaTime);
 
-                    currentSpeed = Mathf.Min(ShipMeta.Speed, currentSpeed + (ShipMeta.Speed / ShipMeta.SpeedChangeRate) * Time.deltaTime);
+                    currentSpeed = Mathf.Min(ShipStats.GetSpeed(), 
+                        currentSpeed + (ShipStats.GetSpeed() / ShipStats.GetSpeedChangeRate()) * Time.deltaTime);
                     transform.position += transform.right * Time.deltaTime * currentSpeed;
                 
                     yield return new WaitForEndOfFrame();
@@ -59,7 +60,7 @@ namespace Game.Ships
 
             while (currentSpeed > 0)
             {
-                currentSpeed = Mathf.Max(0,currentSpeed - ((maxSpeed / ShipMeta.SpeedChangeRate) * Time.deltaTime));
+                currentSpeed = Mathf.Max(0,currentSpeed - ((maxSpeed / ShipStats.GetSpeedChangeRate()) * Time.deltaTime));
                 transform.position += transform.right * Time.deltaTime * currentSpeed;
                 yield return new WaitForEndOfFrame();
             }

@@ -10,7 +10,8 @@ namespace Game
     public enum TileType
     {
         Water,
-        Land
+        Land,
+        Empty
     }
     
     public class ArenaGenerator : MonoBehaviour
@@ -19,6 +20,8 @@ namespace Game
         [SerializeField] private Arena Arena;
         [SerializeField] private Tilemap LandTileMap;
         [SerializeField] private Tilemap WaterTileMap;
+        [SerializeField] private Tilemap LandDecorationTileMap;
+        [SerializeField] private List<TileBase> LandCenterDecorationTiles;
         public TileBase LandTile;
         public TileBase WaterTile;
 
@@ -26,6 +29,13 @@ namespace Game
 
         [Range(0,100)]
         public int RandomFillPercent;
+        [Range(0,100)]
+        public int RandomIslandPercentage;
+
+        [Range(0,100)]
+        public int RandomLandDecorationsPercentage;
+        
+        public int BaseIslandSize;
         public int SmoothAmount;
         
         private Vector2 ArenaSize;
@@ -33,33 +43,60 @@ namespace Game
         
         private void Awake()
         {
-            var collider = Arena.GetComponent<BoxCollider2D>();
-            ArenaSize = collider.size;
-
-            Grid = new TileType[(int)ArenaSize.x, (int)ArenaSize.y];
-
-            RandomFillMap();
-            
-            for (int i = 0; i < SmoothAmount; i++)
-            {
-                SmoothStep();
-            }
-
-            InitializeWater();
-            UpdateArena();
+            // var collider = Arena.GetComponent<BoxCollider2D>();
+            // ArenaSize = collider.size;
+            //
+            // Grid = new TileType[(int)ArenaSize.x, (int)ArenaSize.y];
+            // GeneratorRandom = new System.Random(DateTime.Now.Millisecond);
+            //
+            // InitGrid();
+            // RandomFillMap();
+            //
+            // for (int i = 0; i < SmoothAmount; i++)
+            // {
+            //     SmoothStep();
+            // }
+            //
+            // InitializeWater();
+            // UpdateArena();
         }
 
-        private void RandomFillMap()
+        private void InitGrid()
         {
-            GeneratorRandom = new System.Random(DateTime.Now.Millisecond);
-
             for (int x = 0; x < ArenaSize.x; x++)
             {
                 for (int y = 0; y < ArenaSize.y; y++)
                 {
-                    if (x == 0 || x == (int)ArenaSize.x - 1 || y == 0 || y == (int)ArenaSize.y - 1)
+                    Grid[x, y] = TileType.Empty;
+                }
+            }
+        }
+        
+        private void RandomFillMap()
+        {
+            for (var x = 0; x < ArenaSize.x; x++)
+            {
+                for (var y = 0; y < ArenaSize.y; y++)
+                {
+                    if (x >= ArenaSize.x) continue;
+                    if (Grid[x, y] != TileType.Empty) continue;
+                    
+                    var islandRandom = GeneratorRandom.Next(0, 101);
+
+                    if (islandRandom < RandomIslandPercentage)
                     {
-                        Grid[x, y] = TileType.Water;
+                        for (int x_minor = 0; x_minor < BaseIslandSize; x_minor++)
+                        {
+                            for (int y_minor = 0; y_minor < BaseIslandSize; y_minor++)
+                            {
+                                if (x + x_minor < ArenaSize.x && y + y_minor < ArenaSize.y)
+                                {
+                                    Grid[x + x_minor, y + y_minor] = TileType.Land;    
+                                }
+                            }   
+                        }
+                            
+                        y+=BaseIslandSize-1;
                     }
                     else
                     {
@@ -76,7 +113,7 @@ namespace Game
             {
                 for (int y = 0; y < ArenaSize.y; y++)
                 {
-                    var sandCount = GetSurroundingWallCount(x, y);
+                    var sandCount = GetSurroundingWaterCount(x, y);
 
                     if (sandCount > 4)
                     {
@@ -90,7 +127,7 @@ namespace Game
             }
         }
 
-        private int GetSurroundingWallCount(int x, int y)
+        private int GetSurroundingWaterCount(int x, int y)
         {
             var count = 0;
 
@@ -137,7 +174,32 @@ namespace Game
                     {
                         LandTileMap.SetTile(new Vector3Int(x, y, 0), LandTile);    
                     }
+                }
+            }
+
+            DecorateLand();
+        }
+
+        private void DecorateLand()
+        {
+            for (int x = 0; x < ArenaSize.x; x++)
+            {
+                for (int y = 0; y < ArenaSize.y; y++)
+                {
+                    if (Grid[x, y] != TileType.Land) continue;
                     
+                    var waterCount = GetSurroundingWaterCount(x, y);
+
+                    if (waterCount == 0)
+                    {
+                        var shouldDecorate = GeneratorRandom.Next(0,101) < RandomLandDecorationsPercentage;
+
+                        if (shouldDecorate)
+                        {
+                            var index = GeneratorRandom.Next(0, LandCenterDecorationTiles.Count);
+                            LandDecorationTileMap.SetTile(new Vector3Int(x, y, 0),LandCenterDecorationTiles[index]);
+                        }
+                    }
                 }
             }
         }

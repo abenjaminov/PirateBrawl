@@ -10,37 +10,44 @@ namespace Game.Ships
 {
     public class Ship : MonoBehaviour, IClickHandler
     {
+        [HideInInspector] public string Id;
         public UnityAction<Ship> ShipClickedEvent;
         
         [SerializeField] private ShipsChannel ShipsChannel;
-        [HideInInspector] public string Id;
-        [SerializeField] private ShipMeta ShipMeta;
-
+        [SerializeField] private ShipStats ShipStats;
+        [SerializeField] private GameObject ShipVisuals;
+        
         private SpriteRenderer _spriteRenderer;
         
         private void Awake()
         {
             Id = Guid.NewGuid().ToString();
-
-            _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-            
-            if(_spriteRenderer == null)
-                Debug.LogError("Ship must have a sprite renderer in children");
         }
 
         private void Start()
         {
-            _spriteRenderer.sprite = ShipMeta.ImageFullHealth;
-            transform.localScale = new Vector3(ShipMeta.Scale, ShipMeta.Scale, 0);
-            
-            ShipsChannel.OnShipAdded(this);
+            transform.localScale = new Vector3(ShipStats.GetScale(), ShipStats.GetScale(), 0);
         }
         
         public void HandleClick(ClickEventInfo eventInfo)
         {
-            Debug.Log(ShipMeta.Name + " Clicked");
-            
             ShipClickedEvent?.Invoke(this);
+        }
+
+        public void SpawnShip(Vector2 position, Quaternion direction)
+        {
+            ShipVisuals.SetActive(true);
+            _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+            
+            if(_spriteRenderer == null)
+                Debug.LogError("Ship must have a sprite renderer in children");
+            
+            _spriteRenderer.sprite = ShipStats.GetImage();
+            //transform.SetPositionAndRotation(position, direction);
+            transform.position = position;
+            transform.localRotation = direction;
+            
+            ShipsChannel.OnShipAdded(this);
         }
     }
 }

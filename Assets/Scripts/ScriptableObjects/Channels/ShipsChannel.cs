@@ -8,7 +8,13 @@ namespace ScriptableObjects.Channels
     public class ShipsChannel : ScriptableObject
     {
         public UnityAction<Ship> OnShipAddedEvent;
+        public UnityAction<Ship> OnPlaceNewShipEvent;
 
+        public void OnPlaceNewShip(Ship ship)
+        {
+            OnPlaceNewShipEvent?.Invoke(ship);
+        }
+        
         public void OnShipAdded(Ship ship)
         {
             OnShipAddedEvent?.Invoke(ship);

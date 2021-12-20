@@ -12,9 +12,6 @@ namespace Game
         
         public void HandleClick(ClickEventInfo eventInfo)
         {
-            // TODO : Check the type of terrain that was clicked
-            Debug.Log("Arena Clicked");
-
             GameChannel.OnArenaClicked(new ArenaClickedEventInfo()
             {
                 WorldPosition = eventInfo.WorldPosition
