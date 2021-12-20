@@ -9,9 +9,10 @@ namespace GameDebug
 {
     public class DebugHelper : MonoBehaviour
     {
-        public ShipsChannel ShipChannel;
+        public ShipsChannel FriendlyShipChannel;
         public Ship ShipPrefab;
         
+        [Header("Ship metas")]
         public ShipMeta SpoolMeta;
         public ShipMeta SnoocherMeta;
         public ShipMeta BrinagyteMeta;
@@ -26,37 +27,37 @@ namespace GameDebug
             HelperInstance = this;
         }
 
-        [UnityEditor.MenuItem("Spawn Ship/Manuvar")]
+        [UnityEditor.MenuItem("Spawn Ship/Friendly/Manuvar")]
         public static void SpawnManuvar()
         {
             SpawnShip(HelperInstance.ManuvarMeta);
         }
         
-        [UnityEditor.MenuItem("Spawn Ship/Frigg")]
+        [UnityEditor.MenuItem("Spawn Ship/Friendly/Frigg")]
         public static void SpawnFrigg()
         {
             SpawnShip(HelperInstance.FriggMeta);
         }
         
-        [UnityEditor.MenuItem("Spawn Ship/Geallon")]
+        [UnityEditor.MenuItem("Spawn Ship/Friendly/Geallon")]
         public static void SpawnGeallon()
         {
             SpawnShip(HelperInstance.GeallonMeta);
         }
         
-        [UnityEditor.MenuItem("Spawn Ship/Spool")]
+        [UnityEditor.MenuItem("Spawn Ship/Friendly/Spool")]
         public static void SpawnSpool()
         {
             SpawnShip(HelperInstance.SpoolMeta);
         }
         
-        [UnityEditor.MenuItem("Spawn Ship/Snoocher")]
+        [UnityEditor.MenuItem("Spawn Ship/Friendly/Snoocher")]
         public static void SpawnSnoocher()
         {
             SpawnShip(HelperInstance.SnoocherMeta);
         }
         
-        [UnityEditor.MenuItem("Spawn Ship/Brinagyte")]
+        [UnityEditor.MenuItem("Spawn Ship/Friendly/Brinagyte")]
         public static void SpawnBrinagyte()
         {
             SpawnShip(HelperInstance.BrinagyteMeta);
@@ -66,7 +67,7 @@ namespace GameDebug
         {
             var ship = Instantiate(HelperInstance.ShipPrefab);
             ship.GetComponent<ShipStats>().SetMeta(shipMeta);
-            HelperInstance.ShipChannel.OnPlaceNewShip(ship);
+            HelperInstance.FriendlyShipChannel.OnPlaceNewShip(ship);
         }
     }
 }
