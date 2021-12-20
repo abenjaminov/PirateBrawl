@@ -1,8 +1,8 @@
 ﻿using System;
 using GameInput.Interfaces;
 using GameInput.Models;
-using ScriptableObjects;
 using ScriptableObjects.Channels;
+using ScriptableObjects.Models;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -18,6 +18,7 @@ namespace Game.Ships
         [SerializeField] private GameObject ShipVisuals;
         
         private SpriteRenderer _spriteRenderer;
+        private Team Team;
         
         private void Awake()
         {
@@ -34,8 +35,9 @@ namespace Game.Ships
             ShipClickedEvent?.Invoke(this);
         }
 
-        public void SpawnShip(Vector2 position, Quaternion direction)
+        public void SpawnShip(Team team, Vector2 position, Quaternion direction)
         {
+            Team = team;
             ShipVisuals.SetActive(true);
             _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
             
@@ -43,10 +45,8 @@ namespace Game.Ships
                 Debug.LogError("Ship must have a sprite renderer in children");
             
             _spriteRenderer.sprite = ShipStats.GetImage();
-            //transform.SetPositionAndRotation(position, direction);
-            transform.position = position;
-            transform.localRotation = direction;
-            
+            transform.SetPositionAndRotation(position, direction);
+
             ShipsChannel.OnShipAdded(this);
         }
     }

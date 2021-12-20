@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Game.Ships;
 using ScriptableObjects.Channels;
+using ScriptableObjects.Models;
 using UnityEngine;
 
 namespace Game
@@ -9,6 +10,7 @@ namespace Game
     {
         [SerializeField] private ShipsChannel ShipsChannel;
         [SerializeField] private List<Transform> SpawnPoints;
+        private Team Team;
 
         private void Awake()
         {
@@ -25,7 +27,7 @@ namespace Game
             var index = Random.Range(0, SpawnPoints.Count);
             var spawnPoint = SpawnPoints[index];
             
-            shipToSpawn.SpawnShip(spawnPoint.position, spawnPoint.transform.localRotation);
+            shipToSpawn.SpawnShip(Team, spawnPoint.position, spawnPoint.transform.localRotation);
         }
     }
 }
