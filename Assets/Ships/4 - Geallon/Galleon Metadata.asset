@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64103ef4f99f1ef4fadbc7b3b731d101, type: 3}
   m_Name: Galleon Metadata
   m_EditorClassIdentifier: 
+  Id: 4fb0119f-ba1c-44ed-b69a-8fa765cc4a5b
   Name: Galleon
   Scale: 1.2
   Speed: 4

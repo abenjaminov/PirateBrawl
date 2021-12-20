@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64103ef4f99f1ef4fadbc7b3b731d101, type: 3}
   m_Name: Snoocher Metadata
   m_EditorClassIdentifier: 
+  Id: 46153e0b-ac63-4a2b-931d-1577900ec076
   Name: Snoocher
   Scale: 1.5
   Speed: 1

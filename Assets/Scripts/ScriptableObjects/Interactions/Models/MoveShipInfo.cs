@@ -5,6 +5,7 @@ namespace ScriptableObjects.Interactions.Models
 {
     public class MoveShipInfo
     {
+        public string ShipId;
         public Ship Ship;
         public Vector3 WorldPosition;
 

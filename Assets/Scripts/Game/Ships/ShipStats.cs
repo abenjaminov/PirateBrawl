@@ -1,5 +1,5 @@
-﻿using Game.Models;
-using ScriptableObjects;
+﻿using ScriptableObjects;
+using ScriptableObjects.Models;
 using UnityEngine;
 
 namespace Game.Ships

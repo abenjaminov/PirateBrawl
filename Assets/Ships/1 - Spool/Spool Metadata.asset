@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64103ef4f99f1ef4fadbc7b3b731d101, type: 3}
   m_Name: Spool Metadata
   m_EditorClassIdentifier: 
+  Id: b5883d02-b386-44c3-9a87-f31a98d27a00
   Name: Spool
   Scale: 0.7
   Speed: 2

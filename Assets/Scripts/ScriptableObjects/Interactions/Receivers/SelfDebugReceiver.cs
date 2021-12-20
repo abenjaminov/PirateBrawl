@@ -4,16 +4,16 @@ using UnityEngine;
 namespace ScriptableObjects.Interactions.Receivers
 {
     [CreateAssetMenu(menuName = "Interactions/Receivers/Self Debug", fileName = "Self debug interactions receiver")]
-    public class SelfDebugReceiver : ScriptableObject,IGameInteractionsReceiver
+    public class SelfDebugReceiver : GameInteractionsReceiver
     {
-        public void MoveShip(MoveShipInfo info)
+        public override void MoveShip(MoveShipInfo info)
         {
-            
+            base.OnMoveShipReceivedEvent(info);
         }
 
-        public void SpawnShip(SpawnShipInfo info)
+        public override void SpawnShip(SpawnShipInfo info)
         {
-            
+            base.OnSpawnShipReceivedEvent(info);
         }
     }
 }

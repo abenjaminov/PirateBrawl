@@ -12,12 +12,14 @@ namespace ScriptableObjects.Interactions
             info.Ship.Movement.SetTarget(info.WorldPosition);
         }
 
-        public virtual void SpawnShip(SpawnShipInfo info)
+        public virtual Ship SpawnShip(SpawnShipInfo info)
         {
             var ship = Object.Instantiate(info.ShipPrefab);
-            ship.Id = info.Id;
+            ship.Id = info.ShipId;
             ship.Stats.SetMeta(info.ShipMeta);
             ship.SpawnShip(info.Position, info.Rotation);
+
+            return ship;
         }
     }
 }

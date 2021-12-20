@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64103ef4f99f1ef4fadbc7b3b731d101, type: 3}
   m_Name: Frigg Metadata
   m_EditorClassIdentifier: 
+  Id: 2c792580-6b3f-44de-8561-3a6e79966041
   Name: Frigg
   Scale: 1.7
   Speed: 3

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64103ef4f99f1ef4fadbc7b3b731d101, type: 3}
   m_Name: Manuvar Metadata
   m_EditorClassIdentifier: 
+  Id: 7ecfe399-fd8e-42c9-b930-4701c6b41097
   Name: Manuvar
   Scale: 2
   Speed: 2

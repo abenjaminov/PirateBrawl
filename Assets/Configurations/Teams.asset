@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9631fed442af4f06ac7765c765962981, type: 3}
+  m_Name: Teams
+  m_EditorClassIdentifier: 
+  AllTeams:
+  - Id: 979715a6-c206-4786-b21f-8331d6cbf1fb
+    IsPlayerTeam: 1
+    Color: {r: 0, g: 0, b: 1, a: 0}
+  - Id: f524ce07-c084-4227-9784-efa9bbf956c2
+    IsPlayerTeam: 0
+    Color: {r: 1, g: 0, b: 0, a: 0}
+  - Id: 0f4839f5-8973-4d68-9bb5-75d20eee11fa
+    IsPlayerTeam: 0
+    Color: {r: 0.9974991, g: 1, b: 0, a: 0}
+  - Id: a35966a2-e3f4-43c7-a295-db11dc0d0c6c
+    IsPlayerTeam: 0
+    Color: {r: 0, g: 0, b: 0, a: 0}

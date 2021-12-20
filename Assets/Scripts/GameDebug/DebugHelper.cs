@@ -2,13 +2,17 @@
 using Game.Ships;
 using ScriptableObjects;
 using ScriptableObjects.Channels;
+using ScriptableObjects.Configuration;
+using ScriptableObjects.Interactions.Models;
+using ScriptableObjects.Interactions.Receivers;
 using UnityEngine;
 
 namespace GameDebug
 {
     public class DebugHelper : MonoBehaviour
     {
-        public ShipsChannel EnemyShipChannel;
+        public Teams TeamsList;
+        public GameInteractionsReceiver EnemyReceiver;
         public ShipsChannel FriendlyShipChannel;
         public Ship ShipPrefab;
         
@@ -66,37 +70,42 @@ namespace GameDebug
         [UnityEditor.MenuItem("Spawn Ship/Enemy/Manuvar")]
         public static void SpawnEnemyManuvar()
         {
-            SpawnShip(HelperInstance.ManuvarMeta, HelperInstance.EnemyShipChannel);
+            HelperInstance.EnemyReceiver.SpawnShip(new SpawnShipInfo()
+            {
+                ShipId = Guid.NewGuid().ToString(),
+                Team = HelperInstance.TeamsList.GetFirstEnemyTeam(),
+                ShipMetaId = HelperInstance.ManuvarMeta.Id
+            });
         }
         
         [UnityEditor.MenuItem("Spawn Ship/Enemy/Frigg")]
         public static void SpawnEnemyFrigg()
         {
-            SpawnShip(HelperInstance.FriggMeta, HelperInstance.EnemyShipChannel);
+            //SpawnShip(HelperInstance.FriggMeta, HelperInstance.EnemyShipChannel);
         }
         
         [UnityEditor.MenuItem("Spawn Ship/Enemy/Geallon")]
         public static void SpawnEnemyGeallon()
         {
-            SpawnShip(HelperInstance.GeallonMeta, HelperInstance.EnemyShipChannel);
+            //SpawnShip(HelperInstance.GeallonMeta, HelperInstance.EnemyShipChannel);
         }
         
         [UnityEditor.MenuItem("Spawn Ship/Enemy/Spool")]
         public static void SpawnEnemySpool()
         {
-            SpawnShip(HelperInstance.SpoolMeta, HelperInstance.EnemyShipChannel);
+            //SpawnShip(HelperInstance.SpoolMeta, HelperInstance.EnemyShipChannel);
         }
         
         [UnityEditor.MenuItem("Spawn Ship/Enemy/Snoocher")]
         public static void SpawnEnemySnoocher()
         {
-            SpawnShip(HelperInstance.SnoocherMeta, HelperInstance.EnemyShipChannel);
+            //SpawnShip(HelperInstance.SnoocherMeta, HelperInstance.EnemyShipChannel);
         }
         
         [UnityEditor.MenuItem("Spawn Ship/Enemy/Brinagyte")]
         public static void SpawnEnemyBrinagyte()
         {
-            SpawnShip(HelperInstance.BrinagyteMeta, HelperInstance.EnemyShipChannel);
+            //SpawnShip(HelperInstance.BrinagyteMeta, HelperInstance.EnemyShipChannel);
         }
         
         private static void SpawnShip(ShipMeta shipMeta, ShipsChannel shipChannel)

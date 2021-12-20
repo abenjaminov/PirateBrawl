@@ -26,6 +26,11 @@ namespace Game.Ships
         {
             _shipsChannel.OnShipAddedEvent -= OnShipAddedEvent;
             _gameChannel.OnArenaClickedEvent -= OnArenaClickedEvent;
+
+            foreach (var ship in _ships.Values)
+            {
+                ship.ShipClickedEvent -= ShipClickedEvent;
+            }
         }
         
         private void OnArenaClickedEvent(ArenaClickedEventInfo info)

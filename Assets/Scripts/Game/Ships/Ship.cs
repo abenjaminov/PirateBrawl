@@ -1,5 +1,4 @@
 ﻿using System;
-using Game.Models;
 using GameInput.Interfaces;
 using GameInput.Models;
 using ScriptableObjects.Channels;

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd6bb70742140cfbfcdbe282627f908, type: 3}
+  m_Name: Ship Metas
+  m_EditorClassIdentifier: 
+  AllShipMetas:
+  - {fileID: 11400000, guid: 64265665308692749bd5a4079848dfba, type: 2}
+  - {fileID: 11400000, guid: 5c3df9cf47b769a42bad30174e4d0eb9, type: 2}
+  - {fileID: 11400000, guid: 4b9eee05c9d340e499b5d1c807695798, type: 2}
+  - {fileID: 11400000, guid: 0524dd5ad603a4a48893135679e8fcf0, type: 2}
+  - {fileID: 11400000, guid: ae54ddaa9fe734b40a0f4c26e516069e, type: 2}
+  - {fileID: 11400000, guid: f23394d686371604d8cfb490c1da52fa, type: 2}

@@ -1,13 +1,14 @@
-﻿using Game.Models;
-using Game.Ships;
+﻿using Game.Ships;
+using ScriptableObjects.Models;
 using UnityEngine;
 
 namespace ScriptableObjects.Interactions.Models
 {
     public class SpawnShipInfo
     {
-        public string Id { get; set; }
+        public string ShipId { get; set; }
         public Ship ShipPrefab { get; set; }
+        public string ShipMetaId { get; set; }
         public ShipMeta ShipMeta { get; set; }
         public Team Team { get; set; }
         public Vector3 Position { get; set; }
@@ -15,7 +16,7 @@ namespace ScriptableObjects.Interactions.Models
 
         public override string ToString()
         {
-            return $"Ship id : {Id}, Team: {Team?.Name}";
+            return $"Ship id : {ShipId}, Team Id: {Team?.Id}";
         }
     }
 }

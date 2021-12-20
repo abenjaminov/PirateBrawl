@@ -17,11 +17,13 @@ namespace ScriptableObjects.Interactions
             InteractionsTransmitter?.MoveShip(info);
         }
 
-        public override void SpawnShip(SpawnShipInfo info)
+        public override Ship SpawnShip(SpawnShipInfo info)
         {
-            base.SpawnShip(info);
+            var ship = base.SpawnShip(info);
             
             InteractionsTransmitter?.SpawnShip(info);
+
+            return ship;
         }
     }
 }

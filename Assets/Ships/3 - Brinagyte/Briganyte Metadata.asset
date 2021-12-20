@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64103ef4f99f1ef4fadbc7b3b731d101, type: 3}
   m_Name: Briganyte Metadata
   m_EditorClassIdentifier: 
+  Id: 81ffa14c-30e8-46e4-a251-b0bedf426099
   Name: Briganyte
   Scale: 1
   Speed: 3
