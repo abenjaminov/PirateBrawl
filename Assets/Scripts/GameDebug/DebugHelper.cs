@@ -1,14 +1,13 @@
-﻿using System;
-using Game.Ships;
+﻿using Game.Ships;
 using ScriptableObjects;
 using ScriptableObjects.Channels;
-using UnityEditor;
 using UnityEngine;
 
 namespace GameDebug
 {
     public class DebugHelper : MonoBehaviour
     {
+        public ShipsChannel EnemyShipChannel;
         public ShipsChannel FriendlyShipChannel;
         public Ship ShipPrefab;
         
@@ -28,46 +27,82 @@ namespace GameDebug
         }
 
         [UnityEditor.MenuItem("Spawn Ship/Friendly/Manuvar")]
-        public static void SpawnManuvar()
+        public static void SpawnFriendlyManuvar()
         {
-            SpawnShip(HelperInstance.ManuvarMeta);
+            SpawnShip(HelperInstance.ManuvarMeta, HelperInstance.FriendlyShipChannel);
         }
         
         [UnityEditor.MenuItem("Spawn Ship/Friendly/Frigg")]
-        public static void SpawnFrigg()
+        public static void SpawnFriendlyFrigg()
         {
-            SpawnShip(HelperInstance.FriggMeta);
+            SpawnShip(HelperInstance.FriggMeta, HelperInstance.FriendlyShipChannel);
         }
         
         [UnityEditor.MenuItem("Spawn Ship/Friendly/Geallon")]
-        public static void SpawnGeallon()
+        public static void SpawnFriendlyGeallon()
         {
-            SpawnShip(HelperInstance.GeallonMeta);
+            SpawnShip(HelperInstance.GeallonMeta, HelperInstance.FriendlyShipChannel);
         }
         
         [UnityEditor.MenuItem("Spawn Ship/Friendly/Spool")]
-        public static void SpawnSpool()
+        public static void SpawnFriendlySpool()
         {
-            SpawnShip(HelperInstance.SpoolMeta);
+            SpawnShip(HelperInstance.SpoolMeta, HelperInstance.FriendlyShipChannel);
         }
         
         [UnityEditor.MenuItem("Spawn Ship/Friendly/Snoocher")]
-        public static void SpawnSnoocher()
+        public static void SpawnFriendlySnoocher()
         {
-            SpawnShip(HelperInstance.SnoocherMeta);
+            SpawnShip(HelperInstance.SnoocherMeta, HelperInstance.FriendlyShipChannel);
         }
         
         [UnityEditor.MenuItem("Spawn Ship/Friendly/Brinagyte")]
-        public static void SpawnBrinagyte()
+        public static void SpawnFriendlyBrinagyte()
         {
-            SpawnShip(HelperInstance.BrinagyteMeta);
+            SpawnShip(HelperInstance.BrinagyteMeta, HelperInstance.FriendlyShipChannel);
         }
 
-        private static void SpawnShip(ShipMeta shipMeta)
+        [UnityEditor.MenuItem("Spawn Ship/Enemy/Manuvar")]
+        public static void SpawnEnemyManuvar()
+        {
+            SpawnShip(HelperInstance.ManuvarMeta, HelperInstance.FriendlyShipChannel);
+        }
+        
+        [UnityEditor.MenuItem("Spawn Ship/Enemy/Frigg")]
+        public static void SpawnEnemyFrigg()
+        {
+            SpawnShip(HelperInstance.FriggMeta, HelperInstance.FriendlyShipChannel);
+        }
+        
+        [UnityEditor.MenuItem("Spawn Ship/Enemy/Geallon")]
+        public static void SpawnEnemyGeallon()
+        {
+            SpawnShip(HelperInstance.GeallonMeta, HelperInstance.FriendlyShipChannel);
+        }
+        
+        [UnityEditor.MenuItem("Spawn Ship/Enemy/Spool")]
+        public static void SpawnEnemySpool()
+        {
+            SpawnShip(HelperInstance.SpoolMeta, HelperInstance.FriendlyShipChannel);
+        }
+        
+        [UnityEditor.MenuItem("Spawn Ship/Enemy/Snoocher")]
+        public static void SpawnEnemySnoocher()
+        {
+            SpawnShip(HelperInstance.SnoocherMeta, HelperInstance.FriendlyShipChannel);
+        }
+        
+        [UnityEditor.MenuItem("Spawn Ship/Enemy/Brinagyte")]
+        public static void SpawnEnemyBrinagyte()
+        {
+            SpawnShip(HelperInstance.BrinagyteMeta, HelperInstance.FriendlyShipChannel);
+        }
+        
+        private static void SpawnShip(ShipMeta shipMeta, ShipsChannel shipChannel)
         {
             var ship = Instantiate(HelperInstance.ShipPrefab);
             ship.GetComponent<ShipStats>().SetMeta(shipMeta);
-            HelperInstance.FriendlyShipChannel.OnPlaceNewShip(ship);
+            shipChannel.OnPlaceNewShip(ship);
         }
     }
 }
