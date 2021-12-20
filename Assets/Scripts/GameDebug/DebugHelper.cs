@@ -1,4 +1,5 @@
-﻿using Game.Ships;
+﻿using System;
+using Game.Ships;
 using ScriptableObjects;
 using ScriptableObjects.Channels;
 using UnityEngine;
@@ -65,44 +66,43 @@ namespace GameDebug
         [UnityEditor.MenuItem("Spawn Ship/Enemy/Manuvar")]
         public static void SpawnEnemyManuvar()
         {
-            SpawnShip(HelperInstance.ManuvarMeta, HelperInstance.FriendlyShipChannel);
+            SpawnShip(HelperInstance.ManuvarMeta, HelperInstance.EnemyShipChannel);
         }
         
         [UnityEditor.MenuItem("Spawn Ship/Enemy/Frigg")]
         public static void SpawnEnemyFrigg()
         {
-            SpawnShip(HelperInstance.FriggMeta, HelperInstance.FriendlyShipChannel);
+            SpawnShip(HelperInstance.FriggMeta, HelperInstance.EnemyShipChannel);
         }
         
         [UnityEditor.MenuItem("Spawn Ship/Enemy/Geallon")]
         public static void SpawnEnemyGeallon()
         {
-            SpawnShip(HelperInstance.GeallonMeta, HelperInstance.FriendlyShipChannel);
+            SpawnShip(HelperInstance.GeallonMeta, HelperInstance.EnemyShipChannel);
         }
         
         [UnityEditor.MenuItem("Spawn Ship/Enemy/Spool")]
         public static void SpawnEnemySpool()
         {
-            SpawnShip(HelperInstance.SpoolMeta, HelperInstance.FriendlyShipChannel);
+            SpawnShip(HelperInstance.SpoolMeta, HelperInstance.EnemyShipChannel);
         }
         
         [UnityEditor.MenuItem("Spawn Ship/Enemy/Snoocher")]
         public static void SpawnEnemySnoocher()
         {
-            SpawnShip(HelperInstance.SnoocherMeta, HelperInstance.FriendlyShipChannel);
+            SpawnShip(HelperInstance.SnoocherMeta, HelperInstance.EnemyShipChannel);
         }
         
         [UnityEditor.MenuItem("Spawn Ship/Enemy/Brinagyte")]
         public static void SpawnEnemyBrinagyte()
         {
-            SpawnShip(HelperInstance.BrinagyteMeta, HelperInstance.FriendlyShipChannel);
+            SpawnShip(HelperInstance.BrinagyteMeta, HelperInstance.EnemyShipChannel);
         }
         
         private static void SpawnShip(ShipMeta shipMeta, ShipsChannel shipChannel)
         {
-            var ship = Instantiate(HelperInstance.ShipPrefab);
-            ship.GetComponent<ShipStats>().SetMeta(shipMeta);
-            shipChannel.OnPlaceNewShip(ship);
+            var id = Guid.NewGuid().ToString();
+            shipChannel.OnPlaceNewShip(id, shipMeta);
         }
     }
 }
