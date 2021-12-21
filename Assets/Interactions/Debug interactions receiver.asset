@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 075b8ed83d124d45a5c8936767825ec9, type: 3}
-  m_Name: Enemy Interaction agent
+  m_Script: {fileID: 11500000, guid: 899e76dc661d42d0b0fbcec53dd4e7c2, type: 3}
+  m_Name: Debug interactions receiver
   m_EditorClassIdentifier: 
