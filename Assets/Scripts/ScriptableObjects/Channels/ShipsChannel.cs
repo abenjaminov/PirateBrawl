@@ -9,7 +9,13 @@ namespace ScriptableObjects.Channels
     {
         public UnityAction<Ship> OnShipAddedEvent;
         public UnityAction<string, ShipMeta> OnPlaceNewShipEvent;
+        public UnityAction<Ship> OnShipSelectedEvent;
 
+        public void OnShipSelected(Ship ship)
+        {
+            OnShipSelectedEvent?.Invoke(ship);
+        }
+        
         public void OnPlaceNewShip(string id, ShipMeta meta)
         {
             OnPlaceNewShipEvent?.Invoke(id, meta);

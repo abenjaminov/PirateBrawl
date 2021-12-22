@@ -9,6 +9,7 @@ namespace Game.Ships
 
         private Material OutlineMaterial;
         private static readonly int OutlineColor = Shader.PropertyToID("_OutlineColor");
+        private static readonly int IsEnabled = Shader.PropertyToID("_IsEnabled");
 
         private void Awake()
         {
@@ -29,6 +30,16 @@ namespace Game.Ships
         public void ShowVisuals()
         {
             ShipVisual.SetActive(true);
+        }
+
+        public void ShowOutlines()
+        {
+            OutlineMaterial.SetInt(IsEnabled, 1);
+        }
+        
+        public void HideOutlines()
+        {
+            OutlineMaterial.SetInt(IsEnabled, 0);
         }
     }
 }

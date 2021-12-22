@@ -38,9 +38,13 @@ namespace Game.Ships
             Visuals.ShowVisuals();
             Visuals.SetImage(Stats.GetImage());
             Visuals.SetOutlineColor(Stats.Team.Color);
-            
+            Visuals.HideOutlines();
+
             transform.localScale = new Vector3(Stats.GetScale(), Stats.GetScale(), 0);
-            transform.SetPositionAndRotation(position, direction);
+            
+            // So it will be infront of the arena for clicking
+            var position3 = new Vector3(position.x, position.y, -1);
+            transform.SetPositionAndRotation(position3, direction);
 
             ShipsChannel.OnShipAdded(this);
         }

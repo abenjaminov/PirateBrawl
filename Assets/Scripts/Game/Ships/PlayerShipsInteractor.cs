@@ -61,7 +61,14 @@ namespace Game.Ships
 
         private void ShipClickedEvent(Ship ship)
         {
+            if (_selectedShip != null)
+            {
+                _selectedShip.Visuals.HideOutlines();    
+            }
+            
             _selectedShip = ship;
+            _selectedShip.Visuals.ShowOutlines();
+            _shipsChannel.OnShipSelected(ship);
         }
     }
 }
