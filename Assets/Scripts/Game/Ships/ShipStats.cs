@@ -6,19 +6,9 @@ namespace Game.Ships
 {
     public class ShipStats : MonoBehaviour
     {
-        private ShipMeta ShipMeta;
-        private Team Team;
+        public ShipMeta ShipMeta { get; set; }
+        public Team Team { get; set; }
 
-        public void SetTeam(Team team)
-        {
-            Team = team;
-        }
-
-        public void SetMeta(ShipMeta shipMeta)
-        {
-            ShipMeta = shipMeta;
-        }
-        
         public float GetSpeedChangeRate()
         {
             return ShipMeta.SpeedChangeRate;

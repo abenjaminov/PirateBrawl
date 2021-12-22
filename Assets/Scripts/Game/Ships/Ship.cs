@@ -13,11 +13,11 @@ namespace Game.Ships
         public UnityAction<Ship> ShipClickedEvent;
         
         [SerializeField] private ShipsChannel ShipsChannel;
-        [SerializeField] private GameObject ShipVisuals;
 
         public string Id { get; set; }
         public ShipMovement Movement { get; set; }
         public ShipStats Stats { get; set; }
+        public ShipVisuals Visuals { get; set; }
         
         private SpriteRenderer _spriteRenderer;
 
@@ -25,13 +25,9 @@ namespace Game.Ships
         {
             Movement = GetComponent<ShipMovement>();
             Stats = GetComponent<ShipStats>();
+            Visuals = GetComponent<ShipVisuals>();
         }
 
-        private void Start()
-        {
-            transform.localScale = new Vector3(Stats.GetScale(), Stats.GetScale(), 0);
-        }
-        
         public void HandleClick(ClickEventInfo eventInfo)
         {
             ShipClickedEvent?.Invoke(this);
@@ -39,13 +35,11 @@ namespace Game.Ships
 
         public void SpawnShip(Vector2 position, Quaternion direction)
         {
-            ShipVisuals.SetActive(true);
-            _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+            Visuals.ShowVisuals();
+            Visuals.SetImage(Stats.GetImage());
+            Visuals.SetOutlineColor(Stats.Team.Color);
             
-            if(_spriteRenderer == null)
-                Debug.LogError("Ship must have a sprite renderer in children");
-            
-            _spriteRenderer.sprite = Stats.GetImage();
+            transform.localScale = new Vector3(Stats.GetScale(), Stats.GetScale(), 0);
             transform.SetPositionAndRotation(position, direction);
 
             ShipsChannel.OnShipAdded(this);

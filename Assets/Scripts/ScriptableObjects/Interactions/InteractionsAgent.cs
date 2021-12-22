@@ -16,7 +16,8 @@ namespace ScriptableObjects.Interactions
         {
             var ship = Object.Instantiate(info.ShipPrefab);
             ship.Id = info.ShipId;
-            ship.Stats.SetMeta(info.ShipMeta);
+            ship.Stats.ShipMeta = info.ShipMeta;
+            ship.Stats.Team = info.Team;
             ship.SpawnShip(info.Position, info.Rotation);
 
             return ship;
