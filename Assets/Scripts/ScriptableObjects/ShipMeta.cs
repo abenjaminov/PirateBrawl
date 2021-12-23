@@ -13,6 +13,8 @@ namespace ScriptableObjects
         public float SpeedChangeRate;
         public Sprite ImageFullHealth;
 
+        [Range(0, 1)] public float TeamColorBlendRange;
+
         private void OnEnable()
         {
             if (string.IsNullOrEmpty(Id))

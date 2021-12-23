@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 7ecfe399-fd8e-42c9-b930-4701c6b41097
   Name: Manuvar
-  Scale: 2
+  Scale: 1.7
   Speed: 2
   SpeedChangeRate: 2
   ImageFullHealth: {fileID: 21300000, guid: 54818de91c9146e4a83f3d9fd635097b, type: 3}
+  TeamColorBlendRange: 0.67

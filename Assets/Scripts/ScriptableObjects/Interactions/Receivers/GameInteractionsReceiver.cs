@@ -1,5 +1,4 @@
-﻿using JetBrains.Annotations;
-using ScriptableObjects.Interactions.Models;
+﻿using ScriptableObjects.Interactions.Models;
 using UnityEngine;
 using UnityEngine.Events;
 

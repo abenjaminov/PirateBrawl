@@ -24,6 +24,13 @@ namespace Game
         
         private Team Team;
 
+        private void OnDestroy()
+        {
+            ShipsChannel.OnPlaceNewShipEvent -= OnPlaceNewShipEvent;
+            GameInteractionsReceiver.OnMoveShipReceivedEvent -= OnMoveShipEvent;
+            GameInteractionsReceiver.OnSpawnShipReceivedEvent -= OnSpawnShipReceivedEvent;
+        }
+        
         private void Awake()
         {
             ShipsChannel.OnPlaceNewShipEvent += OnPlaceNewShipEvent;
@@ -41,16 +48,9 @@ namespace Game
             SpawnShipInternal(info.ShipId, shipMeta);
         }
 
-        private void OnMoveShipEvent(MoveShipInfo arg0)
+        private void OnMoveShipEvent(MoveShipInfo info)
         {
             
-        }
-
-        private void OnDestroy()
-        {
-            ShipsChannel.OnPlaceNewShipEvent -= OnPlaceNewShipEvent;
-            GameInteractionsReceiver.OnMoveShipReceivedEvent -= OnMoveShipEvent;
-            GameInteractionsReceiver.OnSpawnShipReceivedEvent -= OnSpawnShipReceivedEvent;
         }
 
         private void OnPlaceNewShipEvent(string id, ShipMeta shipMeta)
@@ -72,6 +72,8 @@ namespace Game
                 Rotation = spawnPoint.transform.localRotation,
                 Team = Team
             });
+            
+            ShipsChannel.OnShipAdded(ship);
 
             _ships.Add(id, ship);
         }

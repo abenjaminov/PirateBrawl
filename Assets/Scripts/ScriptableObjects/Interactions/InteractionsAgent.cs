@@ -18,7 +18,7 @@ namespace ScriptableObjects.Interactions
             ship.Id = info.ShipId;
             ship.Stats.ShipMeta = info.ShipMeta;
             ship.Stats.Team = info.Team;
-            ship.SpawnShip(info.Position, info.Rotation);
+            ship.InitializeShip(info.Position, info.Rotation);
 
             return ship;
         }

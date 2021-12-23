@@ -10,6 +10,7 @@ namespace Game.Ships
         private Material OutlineMaterial;
         private static readonly int OutlineColor = Shader.PropertyToID("_OutlineColor");
         private static readonly int IsEnabled = Shader.PropertyToID("_IsEnabled");
+        private static readonly int ColorReplacementRange = Shader.PropertyToID("_ColorReplacementRange");
 
         private void Awake()
         {
@@ -40,6 +41,11 @@ namespace Game.Ships
         public void HideOutlines()
         {
             OutlineMaterial.SetInt(IsEnabled, 0);
+        }
+
+        public void SetColorReplacementRange(float value)
+        {
+            OutlineMaterial.SetFloat(ColorReplacementRange, value);
         }
     }
 }

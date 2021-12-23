@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using ScriptableObjects;
 using UnityEngine;
 
 namespace Game.Ships
@@ -7,6 +6,7 @@ namespace Game.Ships
     public class ShipMovement : MonoBehaviour
     {
         [SerializeField] private ShipStats ShipStats;
+        [SerializeField] private Transform ReferencePoint;
 
         private const float MaxAngleForMovement = 20;
         private Vector3 _target;
@@ -25,9 +25,9 @@ namespace Game.Ships
             var maxSpeed = currentSpeed;
 
             // Gain speed while rotating to the target
-            while (Vector2.Distance(transform.position, _target) > .3f)
+            while (Vector2.Distance(ReferencePoint.position, _target) > .3f)
             {
-                var directionToTarget = (_target - transform.position).normalized;
+                var directionToTarget = (_target - ReferencePoint.position).normalized;
                 var angle = Mathf.Atan2(directionToTarget.y, directionToTarget.x) * Mathf.Rad2Deg;
 
                 var rotation = Quaternion.AngleAxis(angle, Vector3.forward); 

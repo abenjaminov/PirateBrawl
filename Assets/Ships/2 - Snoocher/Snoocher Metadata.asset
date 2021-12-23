@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 46153e0b-ac63-4a2b-931d-1577900ec076
   Name: Snoocher
-  Scale: 1.5
+  Scale: 0.7
   Speed: 1
   SpeedChangeRate: 2
   ImageFullHealth: {fileID: 21300000, guid: 8e2e0f692ef6696449d4c5fa99419de8, type: 3}
+  TeamColorBlendRange: 0.77

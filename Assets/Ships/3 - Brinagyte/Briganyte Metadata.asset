@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 81ffa14c-30e8-46e4-a251-b0bedf426099
   Name: Briganyte
-  Scale: 1
+  Scale: 1.1
   Speed: 3
   SpeedChangeRate: 3
   ImageFullHealth: {fileID: 21300000, guid: 8608b04e711fadb4da94ed626d45c07c, type: 3}
+  TeamColorBlendRange: 0.765

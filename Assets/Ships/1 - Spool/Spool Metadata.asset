@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: b5883d02-b386-44c3-9a87-f31a98d27a00
   Name: Spool
-  Scale: 0.7
+  Scale: 0.4
   Speed: 2
   SpeedChangeRate: 2
   ImageFullHealth: {fileID: 21300000, guid: c98a93c824b94a849a53086d88b3c039, type: 3}
+  TeamColorBlendRange: 0.2

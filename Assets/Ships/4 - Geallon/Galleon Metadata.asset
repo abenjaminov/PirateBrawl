@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 4fb0119f-ba1c-44ed-b69a-8fa765cc4a5b
   Name: Galleon
-  Scale: 1.2
+  Scale: 0.9
   Speed: 4
   SpeedChangeRate: 4
   ImageFullHealth: {fileID: 21300000, guid: 02890456e5b037b4eba1a08efc718c24, type: 3}
+  TeamColorBlendRange: 0.65
