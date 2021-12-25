@@ -9,13 +9,15 @@ namespace Game.Ships.ShipInteractors
         
         private Ship _selectedShip;
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             _gameChannel.OnArenaClickedEvent += OnArenaClickedEvent;
         }
 
-        private void OnDestroy()
+        protected override void OnDestroy()
         {
+            base.OnDestroy();
             _gameChannel.OnArenaClickedEvent -= OnArenaClickedEvent;
 
             foreach (var ship in Ships.Values)

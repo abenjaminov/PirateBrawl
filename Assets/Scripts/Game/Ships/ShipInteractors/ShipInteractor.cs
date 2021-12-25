@@ -14,12 +14,12 @@ namespace Game.Ships.ShipInteractors
         [SerializeField] protected ShipsChannel _shipsChannel;  
         protected Dictionary<string, Ship> Ships = new Dictionary<string, Ship>();
 
-        private void OnDestroy()
+        protected virtual void OnDestroy()
         {
             _shipsChannel.OnShipAddedEvent -= OnShipAddedEvent;
         }
 
-        private void Awake()
+        protected virtual void Awake()
         {
             _shipsChannel.OnShipAddedEvent += OnShipAddedEvent;
         }

@@ -14,14 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AllTeams:
   - Id: 979715a6-c206-4786-b21f-8331d6cbf1fb
+    IsOccupied: 1
     IsPlayerTeam: 1
-    Color: {r: 0, g: 0, b: 1, a: 0}
+    Color: {r: 0, g: 0, b: 1, a: 1}
   - Id: f524ce07-c084-4227-9784-efa9bbf956c2
+    IsOccupied: 1
     IsPlayerTeam: 0
-    Color: {r: 1, g: 0, b: 0, a: 0}
+    Color: {r: 1, g: 0, b: 0, a: 1}
   - Id: 0f4839f5-8973-4d68-9bb5-75d20eee11fa
+    IsOccupied: 0
     IsPlayerTeam: 0
-    Color: {r: 0.9974991, g: 1, b: 0, a: 0}
+    Color: {r: 0.9974991, g: 1, b: 0, a: 1}
   - Id: a35966a2-e3f4-43c7-a295-db11dc0d0c6c
+    IsOccupied: 0
     IsPlayerTeam: 0
-    Color: {r: 0, g: 0, b: 0, a: 0}
+    Color: {r: 0, g: 0, b: 0, a: 1}

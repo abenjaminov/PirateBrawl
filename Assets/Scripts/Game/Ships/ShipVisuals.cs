@@ -5,6 +5,7 @@ namespace Game.Ships
     public class ShipVisuals : MonoBehaviour
     {
         [SerializeField] private GameObject ShipVisual;
+        [SerializeField] private SpriteRenderer MinimapIconRenderer;
         private SpriteRenderer VisualsRenderer;
 
         private Material OutlineMaterial;
@@ -26,6 +27,7 @@ namespace Game.Ships
         public void SetOutlineColor(Color color)
         {
             OutlineMaterial.SetColor(OutlineColor, color);
+            MinimapIconRenderer.color = color;
         }
 
         public void ShowVisuals()
