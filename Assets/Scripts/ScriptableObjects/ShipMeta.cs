@@ -12,6 +12,7 @@ namespace ScriptableObjects
         public float Speed;
         public float SpeedChangeRate;
         public Sprite ImageFullHealth;
+        public int RevealRadius;
 
         [Range(0, 1)] public float TeamColorBlendRange;
 

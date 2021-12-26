@@ -9,6 +9,11 @@ namespace Game.Ships
         public ShipMeta ShipMeta { get; set; }
         public Team Team { get; set; }
 
+        public int GetRevealRadius()
+        {
+            return ShipMeta.RevealRadius;
+        }
+        
         public float GetSpeedChangeRate()
         {
             return ShipMeta.SpeedChangeRate;

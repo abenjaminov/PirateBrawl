@@ -38,7 +38,7 @@ namespace Game
 
         private void Initialize()
         {
-            var Arena = GameObject.FindObjectOfType<Arena>();
+            var Arena = FindObjectOfType<Arena>();
 
             if (Arena == null)
             {
@@ -46,7 +46,7 @@ namespace Game
                 return;
             }
             
-            _boundsCollider = Arena.GetComponent<BoxCollider2D>();
+            _boundsCollider = Arena.GetComponentInChildren<BoxCollider2D>();
             
             UpdateBounds();
             

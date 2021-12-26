@@ -73,8 +73,7 @@ namespace Game.Ships
             DrawHelperAtCenter(this.transform.right, Color.red, 2f);
         }
         
-        private void DrawHelperAtCenter(
-            Vector3 direction, Color color, float scale)
+        private void DrawHelperAtCenter(Vector3 direction, Color color, float scale)
         {
             Gizmos.color = color;
             Vector3 destination = transform.position + direction * scale;

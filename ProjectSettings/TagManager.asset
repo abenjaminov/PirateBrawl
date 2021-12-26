@@ -15,7 +15,7 @@ TagManager:
   - Ships
   - Minimap
   - MiniMap&Default
-  - 
+  - FogOfWar
   - 
   - 
   - 
@@ -46,4 +46,7 @@ TagManager:
     locked: 0
   - name: Ships
     uniqueID: 1786065213
+    locked: 0
+  - name: FogOfWar
+    uniqueID: 3012398401
     locked: 0

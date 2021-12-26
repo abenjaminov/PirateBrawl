@@ -12,6 +12,9 @@ namespace GameInput
         private int _numberOfClicks;
         [SerializeField] private float _doubleClickTime;
         private float previousClickTime;
+
+        [SerializeField] private LayerMask _layerMask;
+        
         private void Update()
         {
             if (Input.GetMouseButtonDown(0))
@@ -37,7 +40,7 @@ namespace GameInput
             }
         }
 
-        private static void HandleSingleClick()
+        private void HandleSingleClick()
         {
             var worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             var clickableObjects = GetClickableObjects<IClickHandler>(worldPosition);
@@ -53,10 +56,10 @@ namespace GameInput
             }
         }
 
-        private static IEnumerable<T> GetClickableObjects<T>(Vector3 worldPosition)
+        private IEnumerable<T> GetClickableObjects<T>(Vector3 worldPosition)
         {
-            var hit = Physics2D.RaycastAll(worldPosition, Vector2.zero).ToList();
-            hit.AddRange(Physics2D.RaycastAll(Input.mousePosition, Vector2.zero));
+            var hit = Physics2D.RaycastAll(worldPosition, Vector3.forward,1000, _layerMask).ToList();
+            hit.AddRange(Physics2D.RaycastAll(Input.mousePosition, Vector3.forward,1000, _layerMask));
             
             var clickableObjects = hit.Select(x => x.collider.GetComponents<T>()).Where(x => x != null).ToList();
 

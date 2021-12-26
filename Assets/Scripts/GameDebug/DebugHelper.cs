@@ -81,31 +81,56 @@ namespace GameDebug
         [UnityEditor.MenuItem("Spawn Ship/Enemy/Frigg")]
         public static void SpawnEnemyFrigg()
         {
-            //SpawnShip(HelperInstance.FriggMeta, HelperInstance.EnemyShipChannel);
+            HelperInstance.EnemyReceiver.SpawnShip(new SpawnShipInfo()
+            {
+                ShipId = Guid.NewGuid().ToString(),
+                Team = HelperInstance.TeamsList.GetFirstEnemyTeam(),
+                ShipMetaId = HelperInstance.FriggMeta.Id
+            });
         }
         
         [UnityEditor.MenuItem("Spawn Ship/Enemy/Geallon")]
         public static void SpawnEnemyGeallon()
         {
-            //SpawnShip(HelperInstance.GeallonMeta, HelperInstance.EnemyShipChannel);
+            HelperInstance.EnemyReceiver.SpawnShip(new SpawnShipInfo()
+            {
+                ShipId = Guid.NewGuid().ToString(),
+                Team = HelperInstance.TeamsList.GetFirstEnemyTeam(),
+                ShipMetaId = HelperInstance.GeallonMeta.Id
+            });
         }
         
         [UnityEditor.MenuItem("Spawn Ship/Enemy/Spool")]
         public static void SpawnEnemySpool()
         {
-            //SpawnShip(HelperInstance.SpoolMeta, HelperInstance.EnemyShipChannel);
+            HelperInstance.EnemyReceiver.SpawnShip(new SpawnShipInfo()
+            {
+                ShipId = Guid.NewGuid().ToString(),
+                Team = HelperInstance.TeamsList.GetFirstEnemyTeam(),
+                ShipMetaId = HelperInstance.SpoolMeta.Id
+            });
         }
         
         [UnityEditor.MenuItem("Spawn Ship/Enemy/Snoocher")]
         public static void SpawnEnemySnoocher()
         {
-            //SpawnShip(HelperInstance.SnoocherMeta, HelperInstance.EnemyShipChannel);
+            HelperInstance.EnemyReceiver.SpawnShip(new SpawnShipInfo()
+            {
+                ShipId = Guid.NewGuid().ToString(),
+                Team = HelperInstance.TeamsList.GetFirstEnemyTeam(),
+                ShipMetaId = HelperInstance.SnoocherMeta.Id
+            });
         }
         
         [UnityEditor.MenuItem("Spawn Ship/Enemy/Brinagyte")]
         public static void SpawnEnemyBrinagyte()
         {
-            //SpawnShip(HelperInstance.BrinagyteMeta, HelperInstance.EnemyShipChannel);
+            HelperInstance.EnemyReceiver.SpawnShip(new SpawnShipInfo()
+            {
+                ShipId = Guid.NewGuid().ToString(),
+                Team = HelperInstance.TeamsList.GetFirstEnemyTeam(),
+                ShipMetaId = HelperInstance.BrinagyteMeta.Id
+            });
         }
         
         private static void SpawnShip(ShipMeta shipMeta, ShipsChannel shipChannel)
