@@ -84,7 +84,7 @@ namespace Game.Fog
                 var distance = Vector2.Distance(beacon.CurrentPosition, beacon.TargetRevealTransform.position);
                 if (Mathf.Approximately(distance, 0)) continue;
                 
-                beacon.CurrentPosition = Vector3.Lerp(beacon.CurrentPosition, beacon.TargetRevealTransform.position, (beacon.RevealSpeed - 0.5f) * Time.deltaTime);
+                //beacon.CurrentPosition = Vector3.Lerp(beacon.CurrentPosition, beacon.TargetRevealTransform.position, (beacon.RevealSpeed - 0.5f) * Time.deltaTime);
                 Reveal(beacon);
             }
             
@@ -99,13 +99,13 @@ namespace Game.Fog
                 var distance = Vector2.Distance(beacon.CurrentPosition, beacon.TargetRevealTransform.position);
                 if (Mathf.Approximately(distance, 0)) continue;
                 
-                beacon.CurrentPosition = Vector3.Lerp(beacon.CurrentPosition, beacon.TargetRevealTransform.position, (beacon.RevealSpeed - 0.5f) * Time.deltaTime);
+                beacon.CurrentPosition = Vector3.Lerp(beacon.CurrentPosition, beacon.TargetRevealTransform.position, (beacon.RevealSpeed) * Time.deltaTime);
             }
         }
 
         private void Reveal(RevealBeacon beacon)
         {
-            var position = beacon.TargetRevealTransform.position;
+            var position = beacon.CurrentPosition;
             var centerInt = new Vector2Int((int)position.x, (int)position.y);
             var centerOnTexture = ((centerInt - (Vector2)FogOfWarObject.transform.position)) * _resolution;
             var realRadius = beacon.RevealRadius * _resolution;
