@@ -39,8 +39,7 @@ namespace Game.Fog
             {
                 TargetRevealTransform = shipTransform,
                 CurrentPosition = shipTransform.position,
-                RevealRadius = ship.Stats.GetRevealRadius(),
-                RevealSpeed = ship.Stats.GetSpeed()
+                RevealRadius = ship.Stats.GetRevealRadius()
             });
         }
 
@@ -84,29 +83,19 @@ namespace Game.Fog
                 var distance = Vector2.Distance(beacon.CurrentPosition, beacon.TargetRevealTransform.position);
                 if (Mathf.Approximately(distance, 0)) continue;
                 
-                //beacon.CurrentPosition = Vector3.Lerp(beacon.CurrentPosition, beacon.TargetRevealTransform.position, (beacon.RevealSpeed - 0.5f) * Time.deltaTime);
+                
                 Reveal(beacon);
+                beacon.CurrentPosition = beacon.TargetRevealTransform.position;
             }
             
             
             UpdateColor();
         }
 
-        private void FixedUpdate()
-        {
-            foreach (var beacon in Beacons)
-            {
-                var distance = Vector2.Distance(beacon.CurrentPosition, beacon.TargetRevealTransform.position);
-                if (Mathf.Approximately(distance, 0)) continue;
-                
-                beacon.CurrentPosition = Vector3.Lerp(beacon.CurrentPosition, beacon.TargetRevealTransform.position, (beacon.RevealSpeed) * Time.deltaTime);
-            }
-        }
-
         private void Reveal(RevealBeacon beacon)
         {
             var position = beacon.CurrentPosition;
-            var centerInt = new Vector2Int((int)position.x, (int)position.y);
+            var centerInt = new Vector2(position.x, position.y);
             var centerOnTexture = ((centerInt - (Vector2)FogOfWarObject.transform.position)) * _resolution;
             var realRadius = beacon.RevealRadius * _resolution;
             var realRadiusAndBorder = realRadius + 10;
