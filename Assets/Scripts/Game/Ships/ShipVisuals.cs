@@ -35,6 +35,11 @@ namespace Game.Ships
             ShipVisual.SetActive(true);
         }
 
+        public void HideVisuals()
+        {
+            ShipVisual.SetActive(false);
+        }
+
         public void ShowOutlines()
         {
             OutlineMaterial.SetInt(IsEnabled, 1);
